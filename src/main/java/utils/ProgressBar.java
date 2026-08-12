@@ -1,4 +1,5 @@
-package src.utils;
+package utils;
 
 public class ProgressBar {
+
 }

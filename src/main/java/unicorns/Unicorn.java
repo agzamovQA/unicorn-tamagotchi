@@ -1,4 +1,4 @@
-package src.unicorns;
+package unicorns;
 
 public class Unicorn {
 
