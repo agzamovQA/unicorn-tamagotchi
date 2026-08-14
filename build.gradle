@@ -5,3 +5,15 @@ plugins {
 repositories {
     mavenCentral()
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'tamagotchi.Main'
+        )
+    }
+}

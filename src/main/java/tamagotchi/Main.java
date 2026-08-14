@@ -1,3 +1,5 @@
+package tamagotchi;
+
 import ui.ConsoleUI;
 
 public class Main {

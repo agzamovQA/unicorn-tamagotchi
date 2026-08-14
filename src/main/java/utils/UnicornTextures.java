@@ -1,4 +1,4 @@
-package unicorns;
+package utils;
 
 public class UnicornTextures {
     public String neutralUnicorn() {
