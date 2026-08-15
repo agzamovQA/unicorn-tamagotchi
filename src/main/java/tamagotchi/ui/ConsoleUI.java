@@ -1,7 +1,7 @@
-package ui;
-import unicorns.Unicorn;
-import utils.GameTextures;
-import utils.UnicornTextures;
+package tamagotchi.ui;
+import tamagotchi.unicorns.Unicorn;
+import tamagotchi.utils.GameTextures;
+import tamagotchi.utils.UnicornTextures;
 
 import java.util.Scanner;
 
@@ -69,8 +69,8 @@ public class ConsoleUI {
             unicorn.showStatus();
 
             System.out.println("\nЧто делаем?");
-            System.out.println("  1. Покормить (радуга)");
-            System.out.println("  2. Поиграть (облака)");
+            System.out.println("  1. Покормить");
+            System.out.println("  2. Поиграть");
             System.out.println("  3. Уложить спать");
             System.out.println("  4. Пропустить ход");
             System.out.println("  5. Сохранить и выйти в меню");
@@ -83,13 +83,13 @@ public class ConsoleUI {
                     unicorn.feed();
                     break;
                 case 2:
-//                    unicorn.play();
+                    unicorn.play();
                     break;
                 case 3:
-//                    unicorn.sleep();
+                    unicorn.sleep();
                     break;
                 case 4:
-//                    System.out.println("⏳ Время идёт...");
+                    System.out.println("⏳ Время идёт...");
                     break;
                 case 5:
 //                    try {

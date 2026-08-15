@@ -1,6 +1,6 @@
 package tamagotchi;
 
-import ui.ConsoleUI;
+import tamagotchi.ui.ConsoleUI;
 
 public class Main {
     public static void main(String[] args) {

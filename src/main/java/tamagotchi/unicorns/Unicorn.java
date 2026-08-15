@@ -1,6 +1,6 @@
-package unicorns;
+package tamagotchi.unicorns;
 
-import utils.ProgressBar;
+import tamagotchi.utils.ProgressBar;
 
 public class Unicorn {
 
@@ -26,7 +26,24 @@ public class Unicorn {
         hunger = Math.max(0, hunger - 30);
         health = Math.min(MAX_STAT, health + 10);
         happiness = Math.min(MAX_STAT, happiness + 5);
-        System.out.println("🦄 " + name + " с удовольствием жуёт радугу! Здоровье +10");
+//        energy = Math.min(MAX_STAT, energy + 5);
+        System.out.println("🦄 " + name + " с удовольствием жуёт радугу! \nЗдоровье: +10 \nГолод: -30 \nСчастье: +5");
+    }
+
+    public void play() {
+        if (!isAlive) return;
+        hunger = Math.max(0, hunger + 15);
+        happiness = Math.min(MAX_STAT, happiness + 10);
+        energy = Math.min(MAX_STAT, energy - 15);
+        System.out.println("🦄 " + name + " с удовольствием играет! \nЭнергия: -15 \nГолод: +15 \nСчастье: +10");
+    }
+
+    public void sleep() {
+        if (!isAlive) return;
+        hunger = Math.max(0, hunger + 50);
+        happiness = Math.min(MAX_STAT, happiness + 10);
+        energy = Math.min(MAX_STAT, energy + 100);
+        System.out.println("🦄 " + name + " Выспался! \nЭнергия: Максимум \nГолод: +50 \nСчастье: +10");
     }
 
     public void tick() {
@@ -59,7 +76,6 @@ public class Unicorn {
         System.out.println("Статус:  " + (isAlive ? "❤️ Жив" : "💀 Мёртв"));
     }
 
-
     public String getName() { return name; }
 
     public int getHealth() { return health; }
@@ -75,4 +91,3 @@ public class Unicorn {
     public void setHappiness(int happiness) { this.happiness = Math.min(happiness, MAX_STAT); }
     public void setEnergy(int energy) { this.happiness = Math.min(happiness, MAX_STAT); }
 }
-

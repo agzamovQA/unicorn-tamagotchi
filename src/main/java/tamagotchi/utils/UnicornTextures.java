@@ -1,4 +1,4 @@
-package utils;
+package tamagotchi.utils;
 
 public class UnicornTextures {
     public String neutralUnicorn() {

@@ -1,4 +1,4 @@
-package services;
+package tamagotchi.utils;
 
 public class SaveGameServices {
 }

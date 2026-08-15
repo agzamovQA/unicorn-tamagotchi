@@ -1,4 +1,4 @@
-package utils;
+package tamagotchi.utils;
 
 public class ProgressBar {
     private static final int BAR_LENGTH = 20;
