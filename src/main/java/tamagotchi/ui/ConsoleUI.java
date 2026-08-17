@@ -1,6 +1,7 @@
 package tamagotchi.ui;
 import tamagotchi.unicorns.Unicorn;
 import tamagotchi.utils.GameTextures;
+import tamagotchi.utils.SaveGameServices;
 import tamagotchi.utils.UnicornTextures;
 
 import java.util.Scanner;
@@ -12,11 +13,11 @@ public class ConsoleUI {
     private int turnCounter = 0;
 
     public void showMainMenu() {
-        System.out.println("========================================");
+        System.out.println("=================================================");
         System.out.println("  🦄  ДОБРО ПОЖАЛОВАТЬ В TAMAGOCHI - UNICORN  🦄");
-        System.out.println("========================================");
-        System.out.println("          Ваш питомец - Единорог!        ");
-        System.out.println("========================================");
+        System.out.println("=================================================");
+        System.out.println("            Ваш питомец - Единорог!          ");
+        System.out.println("=================================================");
 
         while (true) {
             System.out.println("\nГЛАВНОЕ МЕНЮ:");
@@ -32,8 +33,7 @@ public class ConsoleUI {
                     createNewUnicorn();
                     break;
                 case 2:
-//                    loadGame();
-                    System.out.println("  Типо загрузился");
+                    loadGame();
                     break;
                 case 3:
                     System.out.println("🦄 До свидания! Пусть радуга освещает ваш путь!");
@@ -72,7 +72,7 @@ public class ConsoleUI {
             System.out.println("  1. Покормить");
             System.out.println("  2. Поиграть");
             System.out.println("  3. Уложить спать");
-            System.out.println("  4. Пропустить ход");
+            System.out.println("  4. Сделать 'Пердь'");
             System.out.println("  5. Сохранить и выйти в меню");
             System.out.print("Ваш выбор: ");
 
@@ -89,18 +89,18 @@ public class ConsoleUI {
                     unicorn.sleep();
                     break;
                 case 4:
-                    System.out.println("⏳ Время идёт...");
+                    System.out.println(gameTextures.fart());
                     break;
                 case 5:
-//                    try {
-//                        SaveService.saveGame(unicorn);
-//                    } catch (Exception e) {
-//                        System.out.println("❌ Ошибка сохранения: " + e.getMessage());
-//                    }
-//                    System.out.println("Возвращаемся в главное меню.");
+                    try {
+                        SaveGameServices.saveGame(unicorn);
+                    } catch (Exception e) {
+                        System.out.println(" Ошибка сохранения: " + e.getMessage());
+                    }
+                    System.out.println("Возвращаемся в главное меню.");
                     return;
                 default:
-                    System.out.println("❌ Неверный выбор, попробуйте снова.");
+                    System.out.println("Неверный выбор, попробуйте снова.");
                     continue;
             }
 
@@ -125,6 +125,20 @@ public class ConsoleUI {
 
                 return;
             }
+        }
+    }
+
+    private void loadGame() {
+        try {
+            Unicorn unicorn = SaveGameServices.loadGame();
+            if (unicorn != null) {
+                System.out.println(" Загрузка успешна! Ваш единорог " + unicorn.getName() + " ждёт вас.");
+                startGameLoop(unicorn);
+            } else {
+                System.out.println("Сохранение не найдено. Создайте нового единорога.");
+            }
+        } catch (Exception e) {
+            System.out.println("Ошибка загрузки: " + e.getMessage());
         }
     }
 

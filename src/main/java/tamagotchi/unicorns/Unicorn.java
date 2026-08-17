@@ -2,7 +2,10 @@ package tamagotchi.unicorns;
 
 import tamagotchi.utils.ProgressBar;
 
-public class Unicorn {
+import java.io.Serializable;
+
+public class Unicorn implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public static final int MAX_STAT = 100;
     private String name;
@@ -15,7 +18,7 @@ public class Unicorn {
     public Unicorn (String name) {
         this.name = name;
         this.health = MAX_STAT;
-        this.hunger = 50;
+        this.hunger = 10;
         this.happiness = 75;
         this.energy = MAX_STAT;
         this.isAlive = true;
