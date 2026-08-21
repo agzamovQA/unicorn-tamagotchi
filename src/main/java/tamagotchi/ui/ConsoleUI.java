@@ -1,9 +1,6 @@
 package tamagotchi.ui;
 import tamagotchi.unicorns.Unicorn;
-import tamagotchi.utils.GameTextures;
-import tamagotchi.utils.SaveData;
-import tamagotchi.utils.SaveGameServices;
-import tamagotchi.utils.UnicornTextures;
+import tamagotchi.utils.*;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -13,6 +10,7 @@ public class ConsoleUI {
     private Scanner scanner = new Scanner(System.in);
     UnicornTextures textures = new UnicornTextures();
     GameTextures gameTextures = new GameTextures();
+    GameEventSystem randomEvent = new GameEventSystem();
     private int turnCounter;
     private Unicorn unicorn;
 
@@ -112,6 +110,7 @@ public class ConsoleUI {
             }
 
             unicorn.tick();
+            randomEvent.triggerRandomEvent(unicorn);
 
             var finalGame = turnCounter == 10;
 
@@ -146,6 +145,9 @@ public class ConsoleUI {
 
             Unicorn loadedUnicorn = loadedData.getUnicorn();
             int loadedTurnCounter = loadedData.getTurnCounter();
+
+            this.unicorn = loadedUnicorn;
+            this.turnCounter = loadedTurnCounter;
 
             System.out.println("📂 Загрузка успешна! Ваш единорог " + loadedUnicorn.getName() + " ждёт вас.");
             startGameLoop(loadedUnicorn);

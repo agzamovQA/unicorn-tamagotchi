@@ -93,4 +93,5 @@ public class Unicorn implements Serializable {
     public void setHunger(int hunger) { this.hunger = Math.min(hunger, MAX_STAT); }
     public void setHappiness(int happiness) { this.happiness = Math.min(happiness, MAX_STAT); }
     public void setEnergy(int energy) { this.happiness = Math.min(happiness, MAX_STAT); }
+    public void setHealth(int health) { this.health = Math.min(health, MAX_STAT); }
 }
