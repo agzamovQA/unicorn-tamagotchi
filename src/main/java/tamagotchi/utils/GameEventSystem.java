@@ -39,7 +39,7 @@ public class GameEventSystem {
     }
 
     public void triggerRandomEvent(Unicorn unicorn) {
-        if (unicorn.isAlive() && random.nextDouble() < 0.8) { // 80% шанс
+        if (unicorn.isAlive() && random.nextDouble() < 0.3) { // 80% шанс
             GameEvent event = events.get(random.nextInt(events.size()));
             System.out.println("\n⚡ СОБЫТИЕ: " + event.getDescription());
             event.apply(unicorn);

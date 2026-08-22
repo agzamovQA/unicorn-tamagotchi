@@ -29,7 +29,6 @@ public class Unicorn implements Serializable {
         hunger = Math.max(0, hunger - 30);
         health = Math.min(MAX_STAT, health + 10);
         happiness = Math.min(MAX_STAT, happiness + 5);
-//        energy = Math.min(MAX_STAT, energy + 5);
         System.out.println("🦄 " + name + " с удовольствием жуёт радугу! \nЗдоровье: +10 \nГолод: -30 \nСчастье: +5");
     }
 
@@ -47,6 +46,13 @@ public class Unicorn implements Serializable {
         happiness = Math.min(MAX_STAT, happiness + 10);
         energy = Math.min(MAX_STAT, energy + 100);
         System.out.println("🦄 " + name + " Выспался! \nЭнергия: Максимум \nГолод: +50 \nСчастье: +10");
+    }
+
+    public void poop() {
+        if (!isAlive) return;
+        hunger = Math.max(0, hunger + 10);
+        happiness = Math.min(MAX_STAT, happiness + 25);
+        System.out.println("🦄 " + name + " Покакал! \nГолод: +10 \nСчастье: +25");
     }
 
     public void tick() {

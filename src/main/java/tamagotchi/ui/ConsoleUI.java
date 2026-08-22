@@ -13,6 +13,7 @@ public class ConsoleUI {
     GameEventSystem randomEvent = new GameEventSystem();
     private int turnCounter;
     private Unicorn unicorn;
+    private int TIME_OUT = 3;
 
     public void showMainMenu() throws InterruptedException {
 
@@ -60,11 +61,11 @@ public class ConsoleUI {
 
         System.out.println("\n🦄 Поздравляем! Вы создали единорога по имени " + name + "!");
         System.out.println(textures.neutralUnicorn());
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(TIME_OUT);
         startGameLoop(unicorn);
     }
 
-    private void startGameLoop(Unicorn unicorn) {
+    private void startGameLoop(Unicorn unicorn) throws InterruptedException {
         System.out.println("\n=== Начинаем! Цель: продержаться 10 ходов! ===");
 
         while (unicorn.isAlive()) {
@@ -77,7 +78,8 @@ public class ConsoleUI {
             System.out.println("  2. Поиграть");
             System.out.println("  3. Уложить спать");
             System.out.println("  4. Сделать 'Пердь'");
-            System.out.println("  5. Сохранить и выйти в меню");
+            System.out.println("  5. Покакать");
+            System.out.println("  6. Сохранить и выйти в меню");
             System.out.print("\nВаш выбор: ");
 
             int choice = readInt(1, 5);
@@ -85,17 +87,26 @@ public class ConsoleUI {
             switch (choice) {
                 case 1:
                     unicorn.feed();
+                    TimeUnit.SECONDS.sleep(TIME_OUT);
                     break;
                 case 2:
                     unicorn.play();
+                    TimeUnit.SECONDS.sleep(TIME_OUT);
                     break;
                 case 3:
                     unicorn.sleep();
+                    TimeUnit.SECONDS.sleep(TIME_OUT);
                     break;
                 case 4:
                     System.out.println(gameTextures.fart());
+                    TimeUnit.SECONDS.sleep(TIME_OUT);
                     break;
                 case 5:
+                    unicorn.poop();
+                    System.out.println(gameTextures.poop());
+                    TimeUnit.SECONDS.sleep(TIME_OUT);
+                    break;
+                case 6:
                     SaveData saveData = new SaveData(unicorn, turnCounter);
                     try {
                         SaveGameServices.saveGame(saveData);
@@ -152,7 +163,7 @@ public class ConsoleUI {
             System.out.println("📂 Загрузка успешна! Ваш единорог " + loadedUnicorn.getName() + " ждёт вас.");
             startGameLoop(loadedUnicorn);
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | InterruptedException e) {
             System.out.println("❌ Ошибка загрузки: " + e.getMessage());
         }
     }
